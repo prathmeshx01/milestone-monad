@@ -17,10 +17,16 @@ Milestone is a Monad hackathon prototype exploring transparent crowdfunding with
 - Contributors vote with weight equal to their contribution; approval requires yes votes representing at least 50% of the total raised value.
 - Each approved milestone releases its predefined share to the creator; the final milestone receives any rounding remainder.
 - If the goal is not reached by the deadline, contributors can claim their contributions back.
+- After full funding, the creator has 7 days to submit each next milestone; contributors have 7 days to vote after evidence is submitted.
+- If a milestone is rejected by contributor-weighted votes, or either timeout expires, the campaign can be cancelled and contributors can claim a pro-rata share of the unspent balance.
 
 ## Current network target
 
 Monad Testnet (chain ID 10143). RPC and faucet details: https://docs.monad.xyz/developer-essentials/testnet
+
+## Frontend
+
+The frontend uses ethers.js and MetaMask to read campaigns and submit testnet transactions. After deploying the contract, replace `PASTE_DEPLOYED_CONTRACT_ADDRESS_HERE` in `index.html` with the deployed address. The UI is not functional for on-chain writes until this is configured.
 
 ## Before a public demo
 
