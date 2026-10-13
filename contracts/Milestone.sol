@@ -17,6 +17,8 @@ contract Milestone {
         uint256 deadline;
         uint256 totalRaised;
         uint256 totalReleased;
+        uint256 actionDeadline; // deadline to submit the next milestone after funding/release
+        bool cancelled;
         bool exists;
     }
 
