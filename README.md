@@ -1,34 +1,31 @@
 # Milestone
 
-**Transparent, milestone-based crowdfunding for student projects — a Monad Metropolis hackathon prototype.**
+Milestone is a Monad hackathon prototype exploring transparent crowdfunding with on-chain milestone releases.
 
-## Current status
+## Repository status
 
-This repository currently contains a static frontend prototype. Campaign examples are illustrative and campaign creation is local to the current browser session. Wallet transactions, Monad contract deployment, milestone approvals, and on-chain fund releases are **not yet implemented**.
+- `index.html` and `logo.svg`: frontend prototype.
+- `contracts/Milestone.sol`: initial Solidity contract implementation.
+- **Important:** the contract has not been deployed or independently audited. The current frontend is not yet connected to this contract. Do not use real funds.
 
-## Product idea
+## Contract design
 
-Milestone explores how student teams and community builders can raise small amounts for practical projects while making campaign goals, progress, and funding rules easier to inspect.
+- Campaign creators set a goal, deadline, and milestone payout shares totaling 100%.
+- Contributors send native MON directly to the contract.
+- A campaign can proceed only if the exact funding goal is reached.
+- The creator submits an evidence URI for the current milestone.
+- Contributors vote with weight equal to their contribution; approval requires yes votes representing at least 50% of the total raised value.
+- Each approved milestone releases its predefined share to the creator; the final milestone receives any rounding remainder.
+- If the goal is not reached by the deadline, contributors can claim their contributions back.
 
-## Prototype features
+## Current network target
 
-- Responsive campaign board with category filters
-- Interactive campaign creation preview
-- Example funding goals and milestone progress
-- Custom SVG project mark
-- Clear disclosure that demo actions do not move funds
+Monad Testnet (chain ID 10143). RPC and faucet details: https://docs.monad.xyz/developer-essentials/testnet
 
-## Planned next steps
+## Before a public demo
 
-1. Implement and test a Solidity funding contract with explicit access controls, milestone release rules, and refund/cancellation conditions.
-2. Deploy to the Monad network allowed by the hackathon and verify transactions.
-3. Connect a wallet and replace illustrative campaign data with contract reads and writes.
-4. Test unauthorized release, duplicate release, and refund edge cases.
-
-## Run locally
-
-Open `index.html` in a browser. No build step is required.
-
-## Built for
-
-Monad Metropolis hackathon. This is a prototype and does not handle real funds.
+1. Compile and test the contract in Remix or Foundry.
+2. Deploy to Monad Testnet and record the contract address and deployment transaction.
+3. Connect the frontend to the deployed address and wallet.
+4. Test failed-goal refunds, vote thresholds, payout sequencing, duplicate votes, and creator-only milestone submissions.
+5. Treat the contract as experimental until reviewed; never use real funds.
